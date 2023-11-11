@@ -1,0 +1,66 @@
+{% extends 'base.html' %} 
+{% block title %}Blog{% endblock title %} 
+{% block body %}
+<div class="container mt-4 mb-5">
+  <h2 class="text-center"><strong>❤️ blog page ❤️</strong></h2>
+  <br />
+  <div class="row row-cols-1 row-cols-md-3 g-4 ">
+
+  {% for post in allPosts %}
+    <div class="col ">
+      <div class="card ">
+       <a href="{{post.img.url}}">  <img src="{{post.img.url}}" class="card-img-top" alt="..."   width="100px" height="250px"/> </a>
+        <div class="card-body">
+          <h5 class="card-title">{{post.title |slice:"30"}}</h5>
+          <p class="card-text">
+           {{post.description |slice:"100" |add:" ...." }}
+          </p>
+          <hr>
+          <p>Posted By : <b>{{post.authname}}</b></p>
+          <p>TimeStamp : <b>{{post.timeStamp}}</b></p>
+          <div class="my-2">
+            <a href="/blog/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+          </div>
+        </div>
+      </div>
+    </div>
+   {% endfor %}
+  </div>
+</div>
+
+<div class="blog_osm">
+  <section class="section section-freelancer ">
+    <div class="overlay"></div>
+    <div class="container">
+      <h2>I am <span> available </span> for Latest Blogs</h2>
+      <p>we shall be your professional for search latest News for you </p>
+      <a href="/contact/" class="btn"><b>Contact me </b> </a>
+    </div>
+  </section>
+</div>
+
+
+<div class="container mt-4 mb-5">
+  <h2 class="text-center"><strong>❤️ Latest Blog ❤️</strong></h2>
+  <br />
+  <div class="row row-cols-1 row-cols-md-3 g-4 ">
+
+  {% for post in allPosts reversed %}
+    <div class="col ">
+      <div class="card ">
+       <a href="{{post.img.url}}"><img src="{{post.img.url}}" class="card-img-top" alt="..."   width="100px" height="250px"/> </a>
+        <div class="card-body">
+          <h5 class="card-title">{{post.title |slice:"25"}}</h5>
+          <p class="card-text">
+           {{post.description |slice:"100"}}
+          </p>
+          <hr>
+          <p>Posted By : <b>{{post.authname}}</b></p>
+          <p>TimeStamp : <b>{{post.timeStamp}}</b></p>
+        </div>
+      </div>
+    </div>
+   {% endfor %}
+  </div>
+</div>
+{% endblock body %}
